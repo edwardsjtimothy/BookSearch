@@ -21,8 +21,12 @@ let queryUrl = `https://www.googleapis.com/books/v1/volumes?q=${bookSearch}`;
 
 axios.get(queryUrl).then(
   function(response) {
-    let data = response.kind
-    console.log(data);
+    let data = response.data.items;
+    let title = data[0].volumeInfo.title;
+    let author = data[0].volumeInfo.authors;
+    let synopsis = data[0].volumeInfo.description;
+    let image = data[0].volumeInfo.imageLinks.smallThumbnail;
+    let info = data[0].volumeInfo.infoLink;
   })
   .catch(function(error) {
     if (error.response) {
